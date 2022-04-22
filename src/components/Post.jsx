@@ -20,7 +20,7 @@ function Post(props) {
         let comentarioNovo = document.querySelector(`#comentario-${props.id}`).value;
         
         db.collection('posts').doc(id).collection('comentarios').add({
-            nome: 'props.user,',
+            nome: props.user,
             comentario: comentarioNovo,
             timePost: firebase.firestore.FieldValue.serverTimestamp()
         })
