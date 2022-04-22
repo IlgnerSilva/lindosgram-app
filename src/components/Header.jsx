@@ -46,6 +46,7 @@ function Header(props) {
         props.setUser(auth.user.displayName);
         console.log(props.setUser)
         alert('Logado com sucesso!');
+        window.location.href = '/'
       }).catch((err)=>{
         alert(err.message)
       })
@@ -86,6 +87,12 @@ function Header(props) {
             document.querySelector('#form-upload').reset();
             document.querySelector('.modalUpload').style.display = 'none';
         })
+    })
+  }
+  function logout(e){
+    auth.signOut();
+    auth.signOut().then((val)=>{
+      props.setUser(null)
     })
   }
 
@@ -130,6 +137,7 @@ function Header(props) {
                  Olá <strong>{props.user}</strong>
               </p>
             <a onClick={(e)=>abrirModalUpload(e)} href="#">Postar</a>
+            <a onClick={(e)=> logout(e)}>Sair</a>
           </div>
         ) : (
           <div className="header_loginForm">
